@@ -5,7 +5,9 @@ public with sharing class CareOpportunityHandler1 implements ITrigger{
 
     public void bulkAfter(){
         //This will fetch and map required data from Opportunity object of particular Care__c Record
-        CareOpportunityHelper1.SoqlFetcher(Trigger.new );
+        if (trigger.isAfter && trigger.isUpdate){
+            CareOpportunityHelper1.SoqlFetcher(Trigger.new );
+        }
         system.debug('--- bulkAfter is called');
     }
 
@@ -36,7 +38,9 @@ public with sharing class CareOpportunityHandler1 implements ITrigger{
 
     public void andFinally(){
         //the method will update sum,max,min,avg in Care__c object
-        CareOpportunityHelper1.CareUpdater();
+        if (trigger.isAfter && trigger.isUpdate){
+            CareOpportunityHelper1.CareUpdater();
+        }
         system.debug('--- andFinally called');
     }
 

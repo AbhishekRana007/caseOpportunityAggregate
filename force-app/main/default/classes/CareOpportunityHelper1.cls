@@ -2,6 +2,7 @@ public with sharing class CareOpportunityHelper1{
     private static List<AggregateResult> aggregateResults;
     private static set<id> ids = new set<id>();
     private static map<id, AggregateResult> Aggregatemap = new Map<id, AggregateResult>();
+    
     public static void SoqlFetcher(list<Opportunity> opportunityList){
 
         for (Opportunity acc : opportunityList){
