@@ -5,7 +5,7 @@ public with sharing class CareOpportunityHandler1 implements ITrigger{
 
     public void bulkAfter(){
         //this will only run on afterUpdate
-        if (trigger.isAfter && trigger.isUpdate){
+        if (trigger.isUpdate){
             //This will fetch and map required data from Opportunity object of particular Care__c Record
             CareOpportunityHelper1.SoqlFetcher(Trigger.new );
         }

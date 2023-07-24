@@ -58,7 +58,21 @@ public with sharing class CareOpportunityHelper1{
 
             // system.debug(acc[0].TotalOpportunityAmount__c);
             if (!CareUpdater.isEmpty()){
-                update CareUpdater;
+                Database.SaveResult[] updateResults = Database.update (CareUpdater, false);
+
+                // Process the update results
+                for (Database.SaveResult sr : updateResults){
+                    if (sr.isSuccess()){
+                        // Record updated successfully
+                    } else{
+                        for (Database.Error err : sr.getErrors()){
+                            // Handle the errors
+                            System.debug('Error Message: ' + err.getMessage());
+                            System.debug('Status Code: ' + err.getStatusCode());
+                        }
+                    }
+                }
+
             }
         }
     }
